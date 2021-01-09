@@ -3,7 +3,7 @@
 #include <locale.h>
 
 /*9. ƒаны натуральное число n и символы  s1, Е, sn.
-—троку s1, Е, sn обработать так, чтобы все слова, состо€щие только из цифр, были удалены, 
+—троку s1, Е, sn обработать так, чтобы все слова, состо€щие только из цифр, были удалены,
 их сумма сто€ла последним словом в строке.*/
 
 int main()
@@ -14,13 +14,15 @@ int main()
 	int n, k, j = 0, ch = 0, za = 0;
 	bool q = 1, e = 1;
 	bool flag = 0;
+	char num1[40];
+	int num = 0;
 	printf("¬ведите размер строки: ");
 	scanf_s("%d", &n);
 
 	s = (char*)calloc(n, sizeof(char));
 	c = (int*)calloc(n, sizeof(int));
 
-	printf("¬ведите строку длинной не более %d символов: ", (n-1));
+	printf("¬ведите строку длинной не более %d символов: ", (n - 1));
 	rewind(stdin);  /*чистка буфера*/
 	gets_s(s, n + 1); /*ввод*/
 
@@ -59,6 +61,8 @@ int main()
 
 			if (q && e)
 			{
+				num1[0] = s[i];
+				num += atoi(num1);
 				c[i] = 1;
 				q = 1;
 			}
@@ -70,6 +74,7 @@ int main()
 			continue;
 		}
 	}
+
 	int i;
 	S = (char*)calloc((n), sizeof(char));
 	for (i = 0; i < (n); i++)
@@ -81,22 +86,11 @@ int main()
 				S[j] = s[i];
 				j++;
 			}
-			if (S[j] == '\0' && S[j - 1] == '\0')
-			{
-				za = 1;
-				i = 0;
-				j--;
-			}
-		}
-		if (za == 1)
-		{
-			if (c[i] == 1)
-			{
-				S[j] = s[i];
-				j++;
-			}
 		}
 	}
-		printf("\n");
-		puts(S);
+	//sprintf_s(snum, "%d", );
+
+	printf("\n");
+	puts(S); 
+	printf(" %d", num);
 }
